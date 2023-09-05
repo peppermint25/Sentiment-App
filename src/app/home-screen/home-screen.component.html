@@ -1,0 +1,22 @@
+<div class="text-bar">
+    <div class="search-bar">
+        <div class="title">Check the sentiment</div>
+        <div class="input-bar">
+            <input placeholder="Insert the link to the article here..." type="text" class="search-input"
+            [(ngModel)]="articleUrl"
+            (keyup.enter)="scrapeArticle()"/>
+            <div class="search-btn" (click)="scrapeArticle()">
+                <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+            </div>
+        </div>
+        <span>Or copy and paste the article here</span>
+        <div class="input-bar">
+            <input placeholder="Insert the article here..." type="text" class="search-input"
+            [(ngModel)]="articleText">
+        </div>
+        <div class="results" *ngIf="showResults">
+            <h2>Title: {{ scrapedData?.title}}</h2>
+            <p>{{scrapedData?.content}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+[data-theme="light"] {
+  --background-colour: #ffffff;
+  --text-colour: #000000;
+  --dropdown-colour: #f5f5f5;
+  --dropdown-hover-colour: #cdcdcd;
+  --search-bar-colour: #ffffff;
+  
+}
+
+[data-theme="dark"] {
+  --background-colour: #3c3c3c;
+  --text-colour: #ffffff;
+  --dropdown-colour: #6f6f6f;
+  --dropdown-hover-colour: #555555;
+  --search-bar-colour: #777777;
+}
