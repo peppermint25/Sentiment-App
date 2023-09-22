@@ -13,12 +13,11 @@ export class NavbarComponent {
 
   constructor() { }
 
-  toggleTheme() {
-
-    this.isLightTheme = !this.isLightTheme;
-
+  toggleTheme(theme: 'light' | 'dark') {
+    this.isLightTheme = theme === 'light';
     document.body.setAttribute('data-theme', this.isLightTheme ? 'light' : 'dark');
   }
+  
 
 
 }

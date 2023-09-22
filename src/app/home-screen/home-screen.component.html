@@ -1,22 +1,48 @@
 <div class="text-bar">
     <div class="search-bar">
-        <div class="title">Check the sentiment</div>
+        <h2 class="title">Check the sentiment</h2>
+        <div class="toggle-switch">
+            <div class="toggle-option" [class.active]="selectedInputType === 'url'" (click)="selectInputType('url')">URL</div>
+            <div class="toggle-option" [class.active]="selectedInputType === 'text'" (click)="selectInputType('text')">Text</div>
+        </div>
         <div class="input-bar">
-            <input placeholder="Insert the link to the article here..." type="text" class="search-input"
-            [(ngModel)]="articleUrl"
-            (keyup.enter)="scrapeArticle()"/>
-            <div class="search-btn" (click)="scrapeArticle()">
-                <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
-            </div>
+            <input type="text" class="search-input" placeholder="Enter the subject of the article..." [(ngModel)]="articleSubject" required/>
         </div>
-        <span>Or copy and paste the article here</span>
-        <div class="input-bar">
-            <input placeholder="Insert the article here..." type="text" class="search-input"
-            [(ngModel)]="articleText">
+
+        <div class="input-bar" *ngIf="selectedInputType === 'url'">
+            <input placeholder="Insert the link to the article here..." type="url" class="search-input" id="textInput" [(ngModel)]="articleUrl" (keyup.enter)="analyzeUrl()" />
         </div>
-        <div class="results" *ngIf="showResults">
-            <h2>Title: {{ scrapedData?.title}}</h2>
-            <p>{{scrapedData?.content}}</p>
+        <div class="input-bar" *ngIf="selectedInputType === 'text'">
+            <textarea placeholder="Insert the article here..." class="search-input" [(ngModel)]="articleText" (keyup.enter)="analyzeText()" #textArea  ></textarea>
+
         </div>
+        <div class="btn input-bar" (click)="analyzeUrl()" *ngIf="selectedInputType === 'url'">Analyze the URL
+        </div>
+        <div class="btn input-bar" (click)="analyzeText()" *ngIf="selectedInputType === 'text'">
+            Analyze the Text
+        </div>
+    </div>
+
+
+    <div class="results" *ngIf="aiResult">
+        <div class="result-item">
+            <h2 class="result-title">{{ aiResult.title }}</h2>
+        </div>
+        <!-- <div class="result-item">
+            <div class="result-label">Sentiment: </div>
+            <div class="result-value">{{ aiResult.sentiment }}</div>
+        </div> -->
+        <h2>Sentiment Analysis Results</h2>
+        <div class="sentiments">
+          <div *ngFor="let sentiment of sentimentResults.sentiments" class="sentiment">
+            <h3>{{ sentiment.sentiment }}</h3>
+            <ul>
+              <li *ngFor="let text of sentiment.related_text">{{ text }}</li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    <div class="loading-bar" *ngIf="isLoading">
+        Loading
     </div>
 </div>

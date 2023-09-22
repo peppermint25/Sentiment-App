@@ -12,8 +12,8 @@
             <a href="/register" class="dropdown-item">Register</a>
             <a href="/logout" class="dropdown-item">Logout</a>
             <div class="theme-switch">
-                <input type="checkbox" id="theme"
-                [checked]="isLightTheme" name="theme" (change)="toggleTheme()" />
+                <div class="toggle-option" [class.active]="isLightTheme" (click)="toggleTheme('light')">Light</div>
+                <div class="toggle-option" [class.active]="!isLightTheme" (click)="toggleTheme('dark')">Dark</div>
             </div>
         </div>
     </div>

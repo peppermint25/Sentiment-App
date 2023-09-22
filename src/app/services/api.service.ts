@@ -8,9 +8,13 @@ export class ApiService {
   private backend_url = 'http://localhost:5000';
 
   constructor(private http: HttpClient) {}
+  
+  analyzeArticleByUrl(requestData: { article_url: string; article_subject: string }) {
+    return this.http.post(`${this.backend_url}/api/scrape-url`, requestData);
+  }
+  
 
-  scrapeArticle(articleUrl: string){
-
-    return this.http.post(`${this.backend_url}/api/scrape-article`, {article_url: articleUrl});
+  analyzeArticleByCopy(requestData: { article_text: string; article_subject: string }){
+    return this.http.post(`${this.backend_url}/api/scrape-text`,  requestData );
   }
 }

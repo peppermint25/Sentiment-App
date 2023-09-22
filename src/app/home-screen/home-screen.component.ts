@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
@@ -11,27 +11,72 @@ import { ApiService } from '../services/api.service';
 export class HomeScreenComponent {
 
   faMagnifyingGlass = faMagnifyingGlass;
+  selectedInputType: string = 'url';
+  textarea= document.getElementById('textInput');
 
+  articleSubject: string = '';
   articleUrl: string = '';
   articleText: string = '';
   scrapedData: any = null;
   showResults = false;
+  responseMessage: any = null;
+  aiResult: any = null;
+  sentimentResults: any = null;
+
+  isLoading: boolean = false;
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  scrapeArticle() {
-    // if (this.articleUrl) {
-    //   this.apiService.scrapeArticle(this.articleUrl).subscribe(
-    //     (response) => {
-    //       this.scrapedData = response;
-    //       this.showResults = true;
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
-    // }
+  selectInputType(inputType: string) {
+    this.selectedInputType = inputType;
   }
+
+  analyzeUrl() {
+    this.isLoading = true;
+    if (this.selectedInputType === 'url' && this.articleUrl && this.articleSubject) {
+      const requestData = {
+        article_url: this.articleUrl,
+        article_subject: this.articleSubject
+      };
+      this.apiService.analyzeArticleByUrl(requestData).subscribe(
+        (response) => {
+          this.isLoading = false;
+          this.aiResult = response;
+          this.sentimentResults = JSON.parse(this.aiResult.sentiment);
+
+          console.log(this.aiResult);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+  }
+
+  analyzeText(){
+    this.isLoading = true;
+    if (this.selectedInputType === 'text' && this.articleText && this.articleSubject) {
+      const requestData = {
+        article_text: this.articleText,
+        article_subject: this.articleSubject
+      };
+      console.log(requestData);
+      this.apiService.analyzeArticleByCopy(requestData).subscribe(
+        (response) => {
+          this.isLoading = false;
+          this.aiResult = response;
+          this.sentimentResults = JSON.parse(this.aiResult.sentiment);
+
+
+          console.log(this.sentimentResults.related_text);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+  }
+  
   
 
 }
