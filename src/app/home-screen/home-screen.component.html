@@ -34,12 +34,14 @@
         </div> -->
         <h2>Sentiment Analysis Results</h2>
         <div class="sentiments">
-          <div *ngFor="let sentiment of sentimentResults.sentiments" class="sentiment">
-            <h3>{{ sentiment.sentiment }}</h3>
-            <ul>
-              <li *ngFor="let text of sentiment.related_text">{{ text }}</li>
-            </ul>
-        </div>
+            <div *ngFor="let sentiment of sentimentResults.sentiments">
+                <p>Sentiment: {{ sentiment.sentiment }}</p>
+                <p>Related Text:</p>
+                <ul>
+                  <li *ngFor="let text of sentiment.sentiment_text">{{ text }}</li>
+                </ul>
+            </div>
+
         </div>
     </div>
     <div class="loading-bar" *ngIf="isLoading">

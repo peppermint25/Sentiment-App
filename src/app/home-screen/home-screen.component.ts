@@ -43,8 +43,9 @@ export class HomeScreenComponent {
           this.isLoading = false;
           this.aiResult = response;
           this.sentimentResults = JSON.parse(this.aiResult.sentiment);
+          console.log(this.sentimentResults);
 
-          console.log(this.aiResult);
+          console.log(this.sentimentResults.related_text);
         },
         (error) => {
           console.error(error);
@@ -60,15 +61,11 @@ export class HomeScreenComponent {
         article_text: this.articleText,
         article_subject: this.articleSubject
       };
-      console.log(requestData);
       this.apiService.analyzeArticleByCopy(requestData).subscribe(
         (response) => {
           this.isLoading = false;
           this.aiResult = response;
-          this.sentimentResults = JSON.parse(this.aiResult.sentiment);
-
-
-          console.log(this.sentimentResults.related_text);
+          console.log(this.aiResult);
         },
         (error) => {
           console.error(error);
@@ -76,7 +73,4 @@ export class HomeScreenComponent {
       );
     }
   }
-  
-  
-
 }
