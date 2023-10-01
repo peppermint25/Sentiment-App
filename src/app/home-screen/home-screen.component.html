@@ -28,20 +28,22 @@
         <div class="result-item">
             <h2 class="result-title">{{ aiResult.title }}</h2>
         </div>
-        <!-- <div class="result-item">
-            <div class="result-label">Sentiment: </div>
-            <div class="result-value">{{ aiResult.sentiment }}</div>
-        </div> -->
+
         <h2>Sentiment Analysis Results</h2>
         <div class="sentiments">
-            <div *ngFor="let sentiment of sentimentResults.sentiments">
-                <p>Sentiment: {{ sentiment.sentiment }}</p>
-                <p>Related Text:</p>
-                <ul>
-                  <li *ngFor="let text of sentiment.sentiment_text">{{ text }}</li>
-                </ul>
+            <div *ngFor="let sentiment of aiResult.sentiment">
+                <div>
+                    <h4>{{ sentiment.sentiment }}</h4>
+                </div>
+                <div>
+                    <h4>
+                        {{ sentiment.sentiment_text }}
+                    </h4>
+                </div>
+                <div>
+                    {{ sentiment.explanation }}
+                </div>
             </div>
-
         </div>
     </div>
     <div class="loading-bar" *ngIf="isLoading">

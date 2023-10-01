@@ -42,10 +42,7 @@ export class HomeScreenComponent {
         (response) => {
           this.isLoading = false;
           this.aiResult = response;
-          this.sentimentResults = JSON.parse(this.aiResult.sentiment);
-          console.log(this.sentimentResults);
-
-          console.log(this.sentimentResults.related_text);
+          console.log(this.aiResult);
         },
         (error) => {
           console.error(error);
