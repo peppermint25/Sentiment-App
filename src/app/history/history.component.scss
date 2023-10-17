@@ -1,0 +1,101 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+
+  .history {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: var(--dropdown-colour);
+  }
+}
+
+.history-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  // border-radius: 40px;
+  
+}
+
+.history-item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.history-item-left {
+  font-size: 32px;
+  font-weight: 500;
+  flex: 1;
+  margin-left: 10px;
+
+  a{
+    text-decoration: none;
+    color: var(--text-colour);
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+.sentiment-bar {
+  flex: 1;
+  display: flex;
+  height: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.segment {
+  flex-grow: 1;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s;
+}
+
+/* Add segment colors as per your design */
+.positive-segment {
+  background-color: #64c864; /* Green for positive sentiment */
+}
+
+.neutral-segment {
+  background-color: #f0c25c; /* Yellow for neutral sentiment */
+}
+
+.negative-segment {
+  background-color: #e74c3c; /* Red for negative sentiment */
+}
+
+.time{
+  font-size: 24px;
+  opacity: 0.7;
+  font-style: italic;
+  font-size: 18px;
+  // margin-right: 10px;
+}
+
+.delete-one-btn{
+  .btn{
+    background-color: var(--dropdown-hover-colour);
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 5px 10px 5px 10px;
+
+    font-size: 24px;
+    color: var(--text-colour);
+    opacity: 0.7;
+    transition: ease 0.5s;
+  
+    &:hover{
+      opacity: 1;
+      color: white;
+      background-color: #e74c3c;
+    }
+  }
+}

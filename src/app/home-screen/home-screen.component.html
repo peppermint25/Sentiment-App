@@ -1,52 +1,54 @@
 <div class="text-bar">
-    <div class="search-bar">
-        <h2 class="title">Check the sentiment</h2>
-        <div class="toggle-switch">
-            <div class="toggle-option" [class.active]="selectedInputType === 'url'" (click)="selectInputType('url')">URL</div>
-            <div class="toggle-option" [class.active]="selectedInputType === 'text'" (click)="selectInputType('text')">Text</div>
-        </div>
-        <div class="input-bar">
-            <input type="text" class="search-input" placeholder="Enter the subject of the article..." [(ngModel)]="articleSubject" required/>
-        </div>
-
-        <div class="input-bar" *ngIf="selectedInputType === 'url'">
-            <input placeholder="Insert the link to the article here..." type="url" class="search-input" id="textInput" [(ngModel)]="articleUrl" (keyup.enter)="analyzeUrl()" />
-        </div>
-        <div class="input-bar" *ngIf="selectedInputType === 'text'">
-            <textarea placeholder="Insert the article here..." class="search-input" [(ngModel)]="articleText" (keyup.enter)="analyzeText()" #textArea  ></textarea>
-
-        </div>
-        <div class="btn input-bar" (click)="analyzeUrl()" *ngIf="selectedInputType === 'url'">Analyze the URL
-        </div>
-        <div class="btn input-bar" (click)="analyzeText()" *ngIf="selectedInputType === 'text'">
-            Analyze the Text
-        </div>
+    <h2 class="title">Check the sentiment</h2>
+    <div class="toggle-switch">
+        <div class="toggle-option" [class.active]="selectedInputType === 'url'" (click)="selectInputType('url')">URL</div>
+        <div class="toggle-option" [class.active]="selectedInputType === 'text'" (click)="selectInputType('text')">Text</div>
     </div>
-
-
-    <div class="results" *ngIf="aiResult">
-        <div class="result-item">
-            <h2 class="result-title">{{ aiResult.title }}</h2>
-        </div>
-
-        <h2>Sentiment Analysis Results</h2>
-        <div class="sentiments">
-            <div *ngFor="let sentiment of aiResult.sentiment">
-                <div>
-                    <h4>{{ sentiment.sentiment }}</h4>
-                </div>
-                <div>
-                    <h4>
-                        {{ sentiment.sentiment_text }}
-                    </h4>
-                </div>
-                <div>
-                    {{ sentiment.explanation }}
+    <div class="input-bar">
+        <input type="text" class="search-input" placeholder="Enter the subject of the article..." [(ngModel)]="articleSubject" required/>
+    </div>
+    <div class="input-bar" *ngIf="selectedInputType === 'url'">
+        <input placeholder="Insert the link to the article here... (URL format https://www.google.com)" type="url" class="search-input" id="textInput" [(ngModel)]="articleUrl" (keyup.enter)="analyzeUrl()" required/>
+    </div>
+    <div class="input-bar" *ngIf="selectedInputType === 'text'">
+        <textarea placeholder="Insert the article here..." class="search-input" [(ngModel)]="articleText" (keyup.enter)="analyzeText()" #textArea required >
+        </textarea>
+    </div>
+    <div class="btn input-bar" (click)="analyzeUrl()" *ngIf="selectedInputType === 'url'">Analyze the URL
+    </div>
+    <div class="btn input-bar" (click)="analyzeText()" *ngIf="selectedInputType === 'text'">
+            Analyze the Text
+    </div>
+    <div class="results" *ngIf="aiResult || isLoading">
+        <div class="loading" *ngIf="isLoading">
+            <div class="sentiment-list">
+                <div class="sentiment-entry">
+                    <div class="sentiment-type"></div>
+                    <div class="sentiment-text"></div>
+                    <div class="explanation"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="loading-bar" *ngIf="isLoading">
-        Loading
+        <div class="error" *ngIf="aiResult.message">
+            <h2>
+                {{ aiResult.message }}
+            </h2>
+        </div>
+        <div *ngIf="aiResult && !aiResult.message && !isLoading"class="succesful-results">
+            <div class="sentiment-bar">
+                <div class="segment positive-segment" [style.width]="sentimentBarSegments('Positive')"></div>
+                <div class="segment neutral-segment" [style.width]="sentimentBarSegments('Neutral')"></div>
+                <div class="segment negative-segment" [style.width]="sentimentBarSegments('Negative')"></div>
+            </div>
+            <div class="sentiment-list" *ngIf="aiResult">
+                <div class="sentiment-entry" *ngFor="let sentiment of aiResult.sentiment">
+                    <div class="sentiment-type" [ngClass]="{'positive': sentiment.sentiment === 'Positive', 'neutral': sentiment.sentiment === 'Neutral', 'negative': sentiment.sentiment === 'Negative'}">
+                    {{ sentiment.sentiment }}
+                    </div>
+                    <div class="sentiment-text">{{ sentiment.sentiment_text }}</div>
+                    <div class="explanation">{{ sentiment.explanation }}</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

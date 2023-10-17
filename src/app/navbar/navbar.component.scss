@@ -1,6 +1,8 @@
 .navbar{
 
-    background-color: var(--background-colour);
+  background: linear-gradient(var(--background-colour), transparent);
+
+
     height: 40px;
     padding: 10px 20px;
     position: sticky;
@@ -12,7 +14,7 @@
     justify-content: space-between;
     align-items: center;
 
-    color: var(--text-colour);
+    // color: var(--text-colour);
 
     a{
         color: var(--text-colour);
@@ -28,6 +30,7 @@
     padding: 16px;
     font-size: 16px;
     border: none;
+    border-radius: 10px 10px 0px 0px;
 }  
 
 .dropdown {
@@ -45,6 +48,7 @@
     min-width: 160px;
     z-index: 1;
     border-radius: 10px;
+    padding: 10px;
     border-top-right-radius: 0px;
 }
   
@@ -53,6 +57,7 @@
     color: var(--text-colour);
     padding: 12px 16px;
     text-decoration: none;
+    border-radius: 10px;
     display: block;
 }
   
@@ -65,9 +70,22 @@
   .dropdown:hover .dropdown-menu {
     display: block;
   }
+
+  .dropdown:hover .dropdown-menu::before{
+    content: "";
+    position: absolute;
+
+    top: -15px;
+    right: 72.5px;
+    height: 15px;
+    width: 15px;
+    background-color: transparent;
+    border-bottom-right-radius: 10px;
+    box-shadow: 7.5px 0 var(--dropdown-colour);
+  }
   
   .dropdown:hover .dropdown-btn {
-    background-color: var(--dropdown-hover-colour);
+    background-color: var(--dropdown-colour);
   }
 
 fa-icon{
@@ -79,10 +97,11 @@ fa-icon{
 .theme-switch {
     display: flex;
     width: 200px; /* Adjust the width as needed */
-    border-radius: 5px;
+    margin: 5px;
+    border-radius: 10px;
     overflow: hidden;
     background-color: var(--dropdown-colour);
-    border-top: 1px solid var(--dropdown-hover-colour);
+    border: 1px solid var(--dropdown-hover-colour);
   }
   
   .toggle-option {

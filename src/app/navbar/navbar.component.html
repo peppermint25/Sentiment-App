@@ -1,13 +1,13 @@
 <div class="navbar">
     <div class="navbar__title navbar__item">
-        <a href="/">[Sentiment app]</a>
+        <a [routerLink]="['/']">[Sentiment app]</a>
     </div>
     <div class="navbar__item dropdown" style="float: right;" >
         <button class="dropdown-btn">
-            <fa-icon [icon]="faUser"></fa-icon>
+            <fa-icon aria-label="header button to sing in/out and view the history" [icon]="faUser"></fa-icon>
         </button>
         <div class="dropdown-menu">
-            <a href="/history" class="dropdown-item">History</a>
+            <a [routerLink]="['/history']" class="dropdown-item">History</a>
             <a href="/login" class="dropdown-item">Login</a>
             <a href="/register" class="dropdown-item">Register</a>
             <a href="/logout" class="dropdown-item">Logout</a>

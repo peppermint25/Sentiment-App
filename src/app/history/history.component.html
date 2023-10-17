@@ -1,1 +1,20 @@
-<p>history works!</p>
+<div class="container">
+  <div class="history">
+    <div class="history-item" *ngFor="let item of history; let i = index">
+        <div class="history-item-left">
+          <a [routerLink]="['/', item._id.$oid]">
+            {{ item.subject }}
+            <span class="time">{{ item.timestamp | date: 'medium' }}</span>
+          </a>
+        </div>
+        <div class="sentiment-bar">
+          <div class="segment positive-segment" [style.width]="calculateWidth('Positive', item)"></div>
+          <div class="segment neutral-segment" [style.width]="calculateWidth('Neutral', item)"></div>
+          <div class="segment negative-segment" [style.width]="calculateWidth('Negative', item)"></div>          
+        </div>
+        <div class="delete-one-btn">
+          <button class="btn" (click)="deleteOne(item._id.$oid)">Delete</button>
+        </div>
+    </div>    
+  </div>
+</div>

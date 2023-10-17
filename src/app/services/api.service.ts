@@ -17,4 +17,20 @@ export class ApiService {
   analyzeArticleByCopy(requestData: { article_text: string; article_subject: string }){
     return this.http.post(`${this.backend_url}/api/scrape-text`,  requestData );
   }
+
+  getHistory() {
+    return this.http.get(`${this.backend_url}/api/history`);
+  }
+
+  getOneHistory(id: string) {
+    return this.http.get(`${this.backend_url}/api/history/${id}`);
+  }
+
+  deleteOneHistory(id: string) {
+    return this.http.delete(`${this.backend_url}/api/history/${id}`);
+  }
+
+  deleteAllHistory(id: string) {
+    return this.http.delete(`${this.backend_url}/api/history`);
+  }
 }
