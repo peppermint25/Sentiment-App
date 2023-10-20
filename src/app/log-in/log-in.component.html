@@ -1,1 +1,22 @@
-<p>log-in works!</p>
+<div class="component">
+  <div class="log-in-tile">
+    <div class="component__title">
+      <h1>[Sentiment]</h1>
+      <h2>Log in</h2>
+    </div>
+    <div class="log-in-field">
+      <div class="log-in-field__item">
+        <input type="email" placeholder="E-mail" id="email" [(ngModel)]="email" required/>
+      </div>
+      <div class="log-in-field__item">
+        <input type="password" placeholder="Password" (keypress.enter)="logIn()" id="password" [(ngModel)]="password" required/>
+      </div>
+      <div class="log-in-field__item">
+        <button class="btn" (click)="logIn()">Log in</button>
+      </div>
+    </div>
+    <a [routerLink]="['/register']">Don't have an account? Register here!</a><br>
+    <a [routerLink]="['/home']">test</a>
+  </div>
+
+</div>

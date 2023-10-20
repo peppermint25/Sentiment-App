@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, signal } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
@@ -38,6 +38,19 @@ export class HomeScreenComponent {
             this.isLoading = false;
             this.aiResult = response;
             console.log(this.aiResult);
+
+            this.articleSubject = this.aiResult.subject;
+
+            if (this.aiResult.article) {
+              try {
+                new URL(this.aiResult.article);
+                this.selectInputType('url');
+                this.articleUrl = this.aiResult.article;
+              } catch (error) {
+                this.selectInputType('text');
+                this.articleText = this.aiResult.article;
+              }
+            }
           },
           (error) => {
             console.error(error);
@@ -62,7 +75,7 @@ export class HomeScreenComponent {
       this.apiService.analyzeArticleByUrl(requestData).subscribe(
         (response) => {
           this.isLoading = false;
-          this.aiResult = response;
+          this.aiResult= response;
         },
         (error) => {
           console.error(error);

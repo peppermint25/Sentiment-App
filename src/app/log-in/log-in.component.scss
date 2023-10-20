@@ -1,0 +1,107 @@
+.component{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(255,255,255);
+  background: linear-gradient(48deg, rgba(255,255,255,1) 0%, rgba(193,193,235,1) 35%, rgba(20,20,180,1) 75%, rgba(76,5,138,1) 96%);
+  height: 100vh;
+}
+
+.log-in-tile{
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline: black 1px solid ;
+  border-radius: 20px;
+  background-color: var(--background-colour);
+  padding: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(118, 0, 158, 0.75);
+
+  .component__title{
+    color: var(--text-colour);
+    text-align: center;
+
+    h1{
+      font-size: 40px;
+      margin: 0;
+    }
+
+    h2{
+      font-size: 30px;
+      margin: 0;
+    }
+  }
+
+  .log-in-field{
+    margin: 10px;
+    width: 300px;
+    // height: 30px;
+    border-radius: 5px;
+    // border: 1px solid var(--text-colour);
+    // background-color: var(--dropdown-colour);
+    color: var(--text-colour);
+    font-size: 20px;
+    padding: 5px;
+
+    .log-in-field__item{
+      border: transparent;
+      background-color: transparent;
+      color: var(--text-colour);
+      font-size: 20px;
+      padding: 5px;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      display: flex;
+
+      input{
+        border: transparent;
+        // background-color: transparent;
+        background-color: var(--dropdown-colour);
+        padding: 5px;
+        font-size: 20px;
+        height: 40px;
+        width: 100%;
+        // padding: 5px;
+        // margin: 2px;
+        outline: none;
+        border-radius: 20px;
+      }
+
+      .btn{
+        border: transparent;
+        background-color: rgb(118, 1, 158);
+        color: white;
+        font-size: 20px;
+        height: 60px;
+        width: 100%;
+        padding: 5px;
+        outline: none;
+        border-radius: 20px;
+        transition: ease 1s;
+        box-shadow: 0px 0px 10px 0px rgba(118, 0, 158, 0.75);
+
+        &:hover{
+          background-color: rgb(76, 5, 138);
+          box-shadow: 0px 0px 10px 0px rgba(76, 5, 138, 0.75);
+        }
+      }
+    }
+
+    .log-in-field__item:has(.btn){
+      margin-top: 15px;
+    }
+  }
+
+  a{
+    color: var(--text-colour);
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 16px;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}

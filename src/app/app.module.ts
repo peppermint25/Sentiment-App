@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { HistoryComponent } from './history/history.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
 import { LogInComponent } from './log-in/log-in.component';
@@ -19,7 +18,6 @@ import { LogInComponent } from './log-in/log-in.component';
     HomeScreenComponent,
     HistoryComponent,
     NavbarComponent,
-    FooterComponent,
     RegisterComponent,
     LogInComponent
   ],
