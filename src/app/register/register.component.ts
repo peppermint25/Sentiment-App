@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   register(){
 
@@ -35,6 +36,8 @@ export class RegisterComponent {
     this.authService.register(user).subscribe(
       (response) => {
         console.log(response);
+        this.router.navigate(['/home']); // navigate to '/' route
+        alert('You have successfully registered!');
       },
       (error) => {
         console.error(error);

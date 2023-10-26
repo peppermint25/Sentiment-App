@@ -23,7 +23,11 @@ export class LogInComponent {
     this.authService.login(user).subscribe(
       (response) => {
         console.log(response);
-        this.router.navigate(['/']); // navigate to '/' route
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          this.router.navigate(['/home']);
+        }
+
       },
       (error) => {
         console.error(error);

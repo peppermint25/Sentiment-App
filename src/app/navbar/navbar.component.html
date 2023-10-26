@@ -8,7 +8,7 @@
         </button>
         <div class="dropdown-menu">
             <a [routerLink]="['/history']" class="dropdown-item">History</a>
-            <a href="/login" class="dropdown-item">Logout</a>
+            <a (click)="logout()" class="dropdown-item">Logout</a>
             <div class="theme-switch">
                 <div class="toggle-option" [class.active]="isLightTheme" (click)="toggleTheme('light')">Light</div>
                 <div class="toggle-option" [class.active]="!isLightTheme" (click)="toggleTheme('dark')">Dark</div>

@@ -74,7 +74,9 @@
           "defaultConfiguration": "development",
           "options": {
             "browserTarget": "sentiment-app:build",
-            "hmr": true
+            "hmr": true,
+            "proxyConfig": "proxy.conf.json"
+
           }
         },
         "extract-i18n": {

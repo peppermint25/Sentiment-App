@@ -5,11 +5,13 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { RegisterComponent } from './register/register.component';
 import { LogInComponent } from './log-in/log-in.component';
 
+import { authGuard } from './guards/auth.guard';
+
 
 const routes: Routes = [
-  { path: 'history', component: HistoryComponent },
-  { path: 'home', component: HomeScreenComponent },
-  { path: 'item/:id', component: HomeScreenComponent},
+  { path: 'history', component: HistoryComponent, canActivate: [authGuard] },
+  { path: 'home', component: HomeScreenComponent, canActivate: [authGuard] },
+  { path: 'item/:id', component: HomeScreenComponent, canActivate: [authGuard] },
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LogInComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
