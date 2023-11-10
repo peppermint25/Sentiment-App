@@ -1,6 +1,6 @@
 <div class="text-bar">
     <h2 class="title">Check the sentiment</h2>
-    <div class="toggle-switch">
+    <div class="input-bar" id="toggle-switch">
         <div class="toggle-option" [class.active]="selectedInputType === 'url'" (click)="selectInputType('url')">URL</div>
         <div class="toggle-option" [class.active]="selectedInputType === 'text'" (click)="selectInputType('text')">Text</div>
     </div>
@@ -14,10 +14,10 @@
         <textarea placeholder="Insert the article here..." class="search-input" [(ngModel)]="articleText" (keyup.enter)="analyzeText()" #textArea required >
         </textarea>
     </div>
-    <div class="btn input-bar" (click)="analyzeUrl()" *ngIf="selectedInputType === 'url'">Analyze the URL
+    <div class="input-btn input-bar" (click)="analyzeUrl()" *ngIf="selectedInputType === 'url'">Analyze
     </div>
-    <div class="btn input-bar" (click)="analyzeText()" *ngIf="selectedInputType === 'text'">
-            Analyze the Text
+    <div class="input-btn input-bar" (click)="analyzeText()" *ngIf="selectedInputType === 'text'">
+        Analyze
     </div>
     <div class="results" *ngIf="aiResult || isLoading">
         <div class="loading" *ngIf="isLoading">

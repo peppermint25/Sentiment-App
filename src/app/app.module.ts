@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LogInComponent } from './log-in/log-in.component';
     HistoryComponent,
     NavbarComponent,
     RegisterComponent,
-    LogInComponent
+    LogInComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

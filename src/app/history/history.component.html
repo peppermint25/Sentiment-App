@@ -1,20 +1,35 @@
 <div class="container">
-  <div class="history">
-    <div class="history-item" *ngFor="let item of history; let i = index">
-        <div class="history-item-left">
-          <a [routerLink]="['/item', item._id.$oid]">
-            {{ item.subject }}
-            <span class="time">{{ item.timestamp | date: 'medium' }}</span>
-          </a>
-        </div>
-        <div class="sentiment-bar">
-          <div class="segment positive-segment" [style.width]="calculateWidth('Positive', item)"></div>
-          <div class="segment neutral-segment" [style.width]="calculateWidth('Neutral', item)"></div>
-          <div class="segment negative-segment" [style.width]="calculateWidth('Negative', item)"></div>          
-        </div>
-        <div class="delete-one-btn">
-          <button class="btn" (click)="deleteOne(item._id.$oid)">Delete</button>
-        </div>
-    </div>    
+  <div class="top-bar">
+    <div class="delete-all-btn">
+      <button class="btn" (click)="deleteAll()">Clear all history</button>
+    </div>
   </div>
+  <div class="search-bar">
+    <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchQuery" (input)="search()" />
+    <div class="search-btn" (click)="search()">
+      <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+    </div>
+  </div>
+  <div class="history">
+      <div class="history-item" *ngFor="let item of history; let i = index">
+          <div class="history-item-left">
+            <a [routerLink]="['/item', item._id.$oid]">
+              {{ item.subject }}
+              <span class="time">{{ item.timestamp | date: 'medium' }}</span>
+            </a>
+          </div>
+          <div class="sentiment-bar">
+            <div class="segment positive-segment" [style.width]="calculateWidth('Positive', item)"></div>
+            <div class="segment neutral-segment" [style.width]="calculateWidth('Neutral', item)"></div>
+            <div class="segment negative-segment" [style.width]="calculateWidth('Negative', item)"></div>          
+          </div>
+          <div class="delete-one-btn">
+            <button class="btn" (click)="deleteOne(item._id.$oid)">Delete</button>
+          </div>
+      </div>
+      <div *ngIf="history.length === 0" class="no-items-message">
+        No items in history.
+      </div>
+    </div>
+  
 </div>

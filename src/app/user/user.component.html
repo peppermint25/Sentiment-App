@@ -1,0 +1,25 @@
+<div class="component">
+  <div class="user-delete">
+    <button (click)="deleteAccount()">Delete Account</button>
+  </div>
+  
+  <form>
+    <h2>Change Password</h2>
+    <div class="form-group">
+      <label for="oldPassword">Old Password:</label>
+      <input type="password" [(ngModel)]="oldpassword"  id="oldPassword" name="oldPassword"><br><br>
+    </div>
+    <div class="form-group">
+      <label for="newPassword">New Password:</label>
+      <input type="password" [(ngModel)]="newpassword" id="newPassword" name="newPassword"><br><br>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm New Password:</label>
+      <input [(ngModel)]="confirmPassword" type="password" id="confirmPassword" name="confirmPassword"><br><br>
+    </div>
+    
+    
+    
+    <button type="submit" (click)="changePassword()">Change Password</button>
+  </form>
+</div>

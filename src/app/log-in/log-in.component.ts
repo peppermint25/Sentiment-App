@@ -11,26 +11,39 @@ export class LogInComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  errorMessage: string = '';
+  emailError: boolean = false;
+  passwordError: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
   }
 
   logIn() {
+    this.errorMessage = '';
+    this.emailError = false;
+    this.passwordError = false;
+
     const user = {
       email: this.email,
       password: this.password
     };
     this.authService.login(user).subscribe(
-      (response) => {
-        console.log(response);
+      response => {
         if (response.token) {
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['/home']);
+          sessionStorage.setItem('token', response.token);
+          this.router.navigate(['/search']);
         }
-
-      },
-      (error) => {
-        console.error(error);
+        if(response.message){
+          this.errorMessage = response.message;
+          console.log(this.errorMessage);
+          if (this.errorMessage === 'No account with this email exists.') {
+            this.emailError = true;
+            console.log(this.emailError);
+          }else if(this.errorMessage === 'Incorrect password.') {
+            this.passwordError = true;
+            console.log(this.passwordError);
+          }
+        }
       }
     );
   }

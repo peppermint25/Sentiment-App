@@ -6,17 +6,18 @@
     </div>
     <div class="log-in-field">
       <div class="log-in-field__item">
-        <input type="email" placeholder="E-mail" id="email" [(ngModel)]="email" required/>
+        <input type="email" placeholder="E-mail" id="email" [(ngModel)]="email" required
+        [ngClass]="{ 'error-border': emailError }"/>
+        <div *ngIf="emailError" class="error-message">No account with this email exists.</div>
       </div>
       <div class="log-in-field__item">
-        <input type="password" placeholder="Password" (keypress.enter)="logIn()" id="password" [(ngModel)]="password" required/>
+        <input type="password" placeholder="Password" (keypress.enter)="logIn()" id="password" [(ngModel)]="password" required    [ngClass]="{ 'error-border': passwordError }"/>
+        <div *ngIf="passwordError" class="error-message">Incorrect password.</div>
       </div>
       <div class="log-in-field__item">
         <button class="btn" (click)="logIn()">Log in</button>
       </div>
     </div>
     <a [routerLink]="['/register']">Don't have an account? Register here!</a><br>
-    <a [routerLink]="['/home']">test</a>
   </div>
-
 </div>

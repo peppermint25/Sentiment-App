@@ -1,26 +1,58 @@
 .navbar{
+  // background: var(--pr-colour);
+  height: 40px;
+  padding: 10px 20px;
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  background: linear-gradient(var(--background-colour), transparent);
+  a{
+    text-decoration: none;
+    color: var(--text-colour);
+    font-weight: 300;
 
 
-    height: 40px;
-    padding: 10px 20px;
-    position: sticky;
-    left: 0;
-    top: 0;
-    // width: 100%;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    // color: var(--text-colour);
-
-    a{
-        color: var(--text-colour);
-        font-size: 24px;
-        text-decoration: none;
+    &:hover:not(.active-link){
+      // color: var(--secondary-colour);
+      font-weight: 700;
+      transition: font-weight 0.5s ease;
     }
+  }
+
+  .active-link{
+    color: var(--primary-colour);
+    font-weight: 900;
+    transition: font-weight 0.5s ease;
+  }
+
+  .navbar-left{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 30px;
+    font-size: 1.5rem;
+
+    .nav-left-item:not(:first-child){
+      width: 80px;
+    }
+  }
+
+  .navbar-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-colour);
+    background: linear-gradient( 45deg, var(--primary-colour), var(--secondary-colour));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // text-clip: text;
+    user-select: none;
+  }
+
+
 }
 
 /* Dropdown Button */
@@ -90,7 +122,7 @@
 
 fa-icon{
     color: var(--text-colour);
-    font-size: 24px;
+    font-size: 28px;
     margin: 0 10px;
 }
 
@@ -102,6 +134,7 @@ fa-icon{
     overflow: hidden;
     background-color: var(--dropdown-colour);
     border: 1px solid var(--dropdown-hover-colour);
+    // gap: 20px;
   }
   
   .toggle-option {
@@ -111,8 +144,8 @@ fa-icon{
     padding: 10px;
     cursor: pointer;
     background-color: var(--switch-inactive-colour);
-    transition: background-color 0.3s;
-    color: var(--text-colour);
+    transition: ease 0.3s;
+    color: var(--background-colour);
     font-weight: bold;
   }
   
@@ -121,8 +154,9 @@ fa-icon{
     color: var(--text-colour); /* Change to your desired active text color */
   }
   
-  .toggle-option:hover {
-    background-color: var(--button-hover-colour); /* Change to your desired hover color */
+  .toggle-option:hover:not(.active) {
+    background-color: var(--primary-colour);
+    color: var(--background-colour); /* Change to your desired hover color */
   }
   
   /* Center the text vertically */

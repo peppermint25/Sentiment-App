@@ -5,8 +5,12 @@
   --dropdown-hover-colour: #cdcdcd;
   --search-bar-colour: #ffffff;
   --button-hover-colour: #8DAAC2;
-  --switch-inactive-colour: #e4e4e4;
-  --switch-active-colour: #B4D8F5;
+  --switch-inactive-colour: #9F9FBF;
+  --switch-active-colour: #B8CEFF;
+  --gradient-background: linear-gradient(48deg, #ffffff 0%, var(--secondary-colour) 35%, var(--primary-colour) 75%, var(--accent-colour) 97%); 
+  --primary-colour: #7373ff;
+  --secondary-colour: #b8b8ff;
+  --accent-colour: #902fe4;
   
 }
 
@@ -17,7 +21,11 @@
   --dropdown-hover-colour: #444444;
   --search-bar-colour: #595959;
   --button-hover-colour: #8FABC2;
-  --switch-inactive-colour: #4e4e4e;
+  --switch-inactive-colour: #8585AA;
   --switch-active-colour: #566775;
+  --gradient-background: linear-gradient(48deg, #ffffff 0%, var(--primary-colour) 35%, var(--secondary-colour) 75%, var(--accent-colour) 97%); 
+  --secondary-colour: #7373ff;
+  --primary-colour: #b8b8ff;
+  --accent-colour: #902fe4;
 
 }

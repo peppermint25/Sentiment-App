@@ -11,6 +11,8 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  errorMessage: string = '';
+  emailError: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -36,8 +38,18 @@ export class RegisterComponent {
     this.authService.register(user).subscribe(
       (response) => {
         console.log(response);
-        this.router.navigate(['/home']); // navigate to '/' route
-        alert('You have successfully registered!');
+        if (response.message){
+          if (response.message === 'User created successfully.'){
+            alert('You have successfully registered!');
+            this.router.navigate(['/login']);
+          }
+          this.errorMessage = response.message;
+          console.log(this.errorMessage);
+          if (this.errorMessage === 'An account with this email already exists.') {
+            this.emailError = true;
+            console.log(this.emailError);
+          }
+        }
       },
       (error) => {
         console.error(error);
