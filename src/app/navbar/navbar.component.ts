@@ -31,24 +31,13 @@ export class NavbarComponent implements OnInit {
     document.body.setAttribute('data-theme', this.isLightTheme ? 'light' : 'dark');
   }
 
-  toggleTheme(theme: 'light' | 'dark') {
-    this.isLightTheme = theme === 'light';
-
-    // Store the theme preference in localStorage
-    localStorage.setItem('theme', this.isLightTheme ? 'light' : 'dark');
-
-    // Apply the theme to the body
-    document.body.setAttribute('data-theme', this.isLightTheme ? 'light' : 'dark');
-  }
+  
   
   logout() {
     this.AuthService.logout().subscribe(
       (response) => {
         this.router.navigate(['/login']);
         sessionStorage.removeItem('token');
-      },
-      (error) => {
-        console.error(error);
       }
     );
   }

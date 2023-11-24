@@ -17,11 +17,6 @@
         <div class="dropdown-menu">
             <a routerLink="/user" class="dropdown-item">User Profile</a>
             <a (click)="logout()" class="dropdown-item">Logout</a>
-            <div class="theme-switch">
-                <div class="toggle-option" [class.active]="isLightTheme" (click)="toggleTheme('light')">Light</div>
-                <div class="toggle-option" [class.active]="!isLightTheme" (click)="toggleTheme('dark')">Dark</div>
-            </div>
         </div>
     </div>
-
 </div>

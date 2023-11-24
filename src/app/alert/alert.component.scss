@@ -1,0 +1,62 @@
+.alerts-container {
+  position: fixed;
+  top: 2.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3; 
+}
+
+.alert {
+  width: 30rem;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 20px;
+  z-index: 1;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(-100%); /* Start off-screen */
+  animation: slideDown 0.5s forwards; /* Slide down animation */
+
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+  
+}
+
+.success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.error {
+  background-color: #f44336;
+  color: white;
+}
+
+.warning {
+  background-color: rgb(254, 166, 32);
+  color: white;
+}
+
+.info {
+  background-color: #2196F3;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}

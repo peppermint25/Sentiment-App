@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { UserComponent } from './user/user.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UserComponent } from './user/user.component';
     NavbarComponent,
     RegisterComponent,
     LogInComponent,
-    UserComponent
+    UserComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

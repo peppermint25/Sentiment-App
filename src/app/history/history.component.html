@@ -13,7 +13,7 @@
   <div class="history">
       <div class="history-item" *ngFor="let item of history; let i = index">
           <div class="history-item-left">
-            <a [routerLink]="['/item', item._id.$oid]">
+            <a [routerLink]="['/history', item._id.$oid]">
               {{ item.subject }}
               <span class="time">{{ item.timestamp | date: 'medium' }}</span>
             </a>

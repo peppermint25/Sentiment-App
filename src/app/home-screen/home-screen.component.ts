@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild, signal } from '@angular/core';
+import { AlertService, AlertContext } from './../services/alert.service';
+import { Component} from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
@@ -22,13 +23,15 @@ export class HomeScreenComponent {
   sentimentResults: any = null;
 
   isLoading: boolean = false;
+  url_error: boolean = false;
+
 
   postiveSentiments: number = 0;
   neutralSentiments: number = 0;
   negativeSentiments: number = 0;
   totalSentiments: number = 0;
 
-  constructor(private http: HttpClient, private apiService: ApiService, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private alertService: AlertService ,private apiService: ApiService, private route: ActivatedRoute) {
     this.route.params.subscribe((params) => 
     {
       const itemID = params['id'];
@@ -51,9 +54,6 @@ export class HomeScreenComponent {
                 this.articleText = this.aiResult.article;
               }
             }
-          },
-          (error) => {
-            console.error(error);
           }
         );
       }
@@ -65,26 +65,44 @@ export class HomeScreenComponent {
   }
 
   analyzeUrl() {
-    this.isLoading = true;
+    this.url_error = false;
+    if (!this.articleSubject) {
+      this.alertService.addAlert('Please enter a subject', AlertContext.Error);
+      return;
+    }
+    if (!this.articleUrl) {
+      this.alertService.addAlert('Please enter a URL', AlertContext.Error);
+      return;
+    }
     this.aiResult = null;
+    this.isLoading = true;
     if (this.selectedInputType === 'url' && this.articleUrl && this.articleSubject) {
       const requestData = {
         article_url: this.articleUrl,
         article_subject: this.articleSubject
       };
       this.apiService.analyzeArticleByUrl(requestData).subscribe(
-        (response) => {
+        (response: any) => {
           this.isLoading = false;
+          if(response.message){
+            this.alertService.addAlert(response.message, AlertContext.Error);
+            this.url_error = true;
+          }
           this.aiResult= response;
-        },
-        (error) => {
-          console.error(error);
         }
       );
     }
   }
 
   analyzeText(){
+    if (!this.articleSubject) {
+      this.alertService.addAlert('Please enter a subject', AlertContext.Error);
+      return;
+    }
+    if (!this.articleText) {
+      this.alertService.addAlert('Please enter text', AlertContext.Error);
+      return;
+    }
     this.isLoading = true;
     this.aiResult = null;
     if (this.selectedInputType === 'text' && this.articleText && this.articleSubject) {
@@ -93,13 +111,14 @@ export class HomeScreenComponent {
         article_subject: this.articleSubject
       };
       this.apiService.analyzeArticleByCopy(requestData).subscribe(
-        (response) => {
+        (response: any) => {
+          
           this.isLoading = false;
+          if(response.message){
+            this.alertService.addAlert(response.message, AlertContext.Error);
+          }
           this.aiResult = response;
 
-        },
-        (error) => {
-          console.error(error);
         }
       );
     }

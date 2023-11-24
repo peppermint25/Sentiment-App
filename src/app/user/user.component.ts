@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
-
+import { AlertService, AlertContext } from '../services/alert.service';
 
 @Component({
   selector: 'app-user',
@@ -11,29 +11,21 @@ export class UserComponent {
   oldpassword: string = '';
   newpassword: string = '';
   confirmPassword: string = '';
+  isLightTheme: boolean = true;
 
-
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private alertService: AlertService) { }
 
   deleteAccount() {
     this.apiService.deleteAccount().subscribe((data: any) => {
       console.log(data);
-      alert('Your account has been deleted!');
+      this.alertService.addAlert('Account deleted successfully', AlertContext.Success);
       sessionStorage.removeItem('token');
       window.location.href = '/login';
     });
   }
 
-  changePassword(){
-    if (this.oldpassword.length === 0 || this.newpassword.length === 0 || this.confirmPassword.length === 0) {
-      console.log(this.oldpassword.length, this.newpassword.length, this.confirmPassword.length);
-
-      alert('Please fill in all fields');
-      return;
-    }
-
-    if (this.newpassword !== this.confirmPassword) {
-      alert('Passwords do not match');
+  changePassword() {
+    if (!this.validatePassword()) {
       return;
     }
 
@@ -45,7 +37,10 @@ export class UserComponent {
     this.apiService.changePassword(user).subscribe(
       (response) => {
         console.log(response);
-        alert('Your password has been changed!');
+        this.oldpassword = '';
+        this.newpassword = '';
+        this.confirmPassword = '';
+        this.alertService.addAlert('Password changed successfully', AlertContext.Success);
       },
       (error) => {
         console.error(error);
@@ -53,5 +48,47 @@ export class UserComponent {
     );
   }
 
+  validatePassword(): boolean {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
+    if (!passwordRegex.test(this.newpassword)) {
+      if (this.newpassword.length < 8) {
+        this.alertService.addAlert('Password must be at least 8 characters long', AlertContext.Warning);
+        return false;
+      }
+      if (!/\d/.test(this.newpassword)) {
+        this.alertService.addAlert('Password must contain at least one number', AlertContext.Warning);
+        return false;
+      }
+      if (!/[a-z]/.test(this.newpassword)) {
+        this.alertService.addAlert('Password must contain at least one lowercase letter', AlertContext.Warning);
+        return false;
+      }
+      if (!/[A-Z]/.test(this.newpassword)) {
+        this.alertService.addAlert('Password must contain at least one uppercase letter', AlertContext.Warning);
+        return false;
+      }
+      if (!/[!@#$%^&*()|/]/.test(this.newpassword)) {
+        this.alertService.addAlert('Password must contain at least one special symbol (!@#$%^&*()|/)', AlertContext.Warning);
+        return false;
+      }
+    }
+
+    if (this.newpassword !== this.confirmPassword) {
+      this.alertService.addAlert('Passwords do not match', AlertContext.Error);
+      return false;
+    }
+
+    return true;
+  }
+
+  toggleTheme(theme: 'light' | 'dark') {
+    this.isLightTheme = theme === 'light';
+
+    // Store the theme preference in localStorage
+    localStorage.setItem('theme', this.isLightTheme ? 'light' : 'dark');
+
+    // Apply the theme to the body
+    document.body.setAttribute('data-theme', this.isLightTheme ? 'light' : 'dark');
+  }
 }

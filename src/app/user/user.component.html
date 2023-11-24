@@ -1,8 +1,13 @@
 <div class="component">
-  <div class="user-delete">
-    <button (click)="deleteAccount()">Delete Account</button>
+  <div class="theme-bar">
+    <div>
+      Theme
+    </div>
+    <div class="theme-switch">
+      <div class="toggle-option" [class.active]="isLightTheme" (click)="toggleTheme('light')">Light</div>
+      <div class="toggle-option" [class.active]="!isLightTheme" (click)="toggleTheme('dark')">Dark</div>
   </div>
-  
+  </div>
   <form>
     <h2>Change Password</h2>
     <div class="form-group">
@@ -17,9 +22,9 @@
       <label for="confirmPassword">Confirm New Password:</label>
       <input [(ngModel)]="confirmPassword" type="password" id="confirmPassword" name="confirmPassword"><br><br>
     </div>
-    
-    
-    
     <button type="submit" (click)="changePassword()">Change Password</button>
   </form>
+  <div class="user-delete">
+    <button (click)="deleteAccount()">Delete Account</button>
+  </div>
 </div>

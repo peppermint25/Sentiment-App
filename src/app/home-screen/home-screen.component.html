@@ -7,11 +7,11 @@
     <div class="input-bar">
         <input type="text" class="search-input" placeholder="Enter the subject of the article..." [(ngModel)]="articleSubject" required/>
     </div>
-    <div class="input-bar" *ngIf="selectedInputType === 'url'">
-        <input placeholder="Insert the link to the article here... (URL format https://www.google.com)" type="url" class="search-input" id="textInput" [(ngModel)]="articleUrl" (keyup.enter)="analyzeUrl()" required/>
+    <div class="input-bar" *ngIf="selectedInputType === 'url'" [ngClass]="{'error-border': url_error}">
+        <input placeholder="Insert the link to the article here... (URL format https://www.google.com)" type="url" class="search-input" id="textInput" [(ngModel)]="articleUrl" (keyup.enter)="analyzeUrl()" />
     </div>
     <div class="input-bar" *ngIf="selectedInputType === 'text'">
-        <textarea placeholder="Insert the article here..." class="search-input" [(ngModel)]="articleText" (keyup.enter)="analyzeText()" #textArea required >
+        <textarea placeholder="Insert the text here..." class="search-input" [(ngModel)]="articleText" (keyup.enter)="analyzeText()" #textArea  >
         </textarea>
     </div>
     <div class="input-btn input-bar" (click)="analyzeUrl()" *ngIf="selectedInputType === 'url'">Analyze
@@ -28,11 +28,6 @@
                     <div class="explanation"></div>
                 </div>
             </div>
-        </div>
-        <div class="error" *ngIf="aiResult.message">
-            <h2>
-                {{ aiResult.message }}
-            </h2>
         </div>
         <div *ngIf="aiResult && !aiResult.message && !isLoading"class="succesful-results">
             <div class="sentiment-bar">

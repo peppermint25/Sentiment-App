@@ -1,0 +1,5 @@
+<div class="alerts-container">
+  <div *ngFor="let alert of alerts; let i = index" class="alert" [ngClass]="getAlertClasses(alert)" (click)="closeAlert(i)">
+    {{ alert.message }}
+  </div>
+</div>

@@ -17,9 +17,8 @@
 
 
     &:hover:not(.active-link){
-      // color: var(--secondary-colour);
       font-weight: 700;
-      transition: font-weight 0.5s ease;
+      transition: font-weight 0.2s ease;
     }
   }
 
@@ -124,49 +123,3 @@ fa-icon{
     font-size: 28px;
     margin: 0 10px;
 }
-
-.theme-switch {
-    display: flex;
-    width: 200px; /* Adjust the width as needed */
-    margin: 5px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: var(--dropdown-colour);
-    border: 1px solid var(--dropdown-hover-colour);
-    // gap: 20px;
-  }
-  
-  .toggle-option {
-    flex: 1;
-    text-align: center;
-    margin: 0;
-    padding: 10px;
-    cursor: pointer;
-    background-color: var(--switch-inactive-colour);
-    transition: ease 0.3s;
-    color: var(--background-colour);
-    font-weight: bold;
-  }
-  
-  .toggle-option.active {
-    background-color: var(--switch-active-colour) !important; /* Change to your desired active color */
-    color: var(--text-colour); /* Change to your desired active text color */
-  }
-  
-  .toggle-option:hover:not(.active) {
-    background-color: var(--primary-colour);
-    color: var(--background-colour); /* Change to your desired hover color */
-  }
-  
-  /* Center the text vertically */
-  .toggle-option::before {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
-  
-  .theme-switch input[type="checkbox"] {
-    display: none; /* Hide the default checkbox input */
-  }
-  

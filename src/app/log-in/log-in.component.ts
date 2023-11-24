@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router} from '@angular/router';
+import { AlertService, AlertContext } from '../services/alert.service';
 
 @Component({
   selector: 'app-log-in',
@@ -15,7 +16,7 @@ export class LogInComponent {
   emailError: boolean = false;
   passwordError: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private alertService: AlertService) {
   }
 
   logIn() {
@@ -38,10 +39,10 @@ export class LogInComponent {
           console.log(this.errorMessage);
           if (this.errorMessage === 'No account with this email exists.') {
             this.emailError = true;
-            console.log(this.emailError);
+            this.alertService.addAlert('No account with this email exists.', AlertContext.Warning);
           }else if(this.errorMessage === 'Incorrect password.') {
             this.passwordError = true;
-            console.log(this.passwordError);
+            this.alertService.addAlert('Incorrect password.', AlertContext.Warning);
           }
         }
       }
