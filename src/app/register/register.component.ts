@@ -8,6 +8,7 @@ import { AlertService, AlertContext } from '../services/alert.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent {
   email: string = '';
   password: string = '';
@@ -23,11 +24,20 @@ export class RegisterComponent {
       return;
     }
 
+    
+
     if (this.password !== this.confirmPassword) {
       this.alertService.addAlert('Passwords do not match', AlertContext.Warning);
       return;
     }
 
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailRegex.test(this.email)) {
+      this.alertService.addAlert('Please enter a valid email address', AlertContext.Warning);
+      this.emailError = true;
+      return;
+    }
+    
     // Password difficulty requirements
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(this.password)) {
@@ -60,7 +70,7 @@ export class RegisterComponent {
         console.log(response);
         if (response.message) {
           if (response.message === 'User created successfully.') {
-            this.alertService.addAlert('Account created successfully', AlertContext.Success);
+            this.alertService.addAlert('Account created successfully.', AlertContext.Success);
             this.router.navigate(['/login']);
           }
           this.errorMessage = response.message;

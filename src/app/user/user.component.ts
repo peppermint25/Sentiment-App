@@ -18,7 +18,7 @@ export class UserComponent {
   deleteAccount() {
     this.apiService.deleteAccount().subscribe((data: any) => {
       console.log(data);
-      this.alertService.addAlert('Account deleted successfully', AlertContext.Success);
+      this.alertService.addAlert('Account deleted successfully.', AlertContext.Success);
       sessionStorage.removeItem('token');
       window.location.href = '/login';
     });
@@ -40,10 +40,7 @@ export class UserComponent {
         this.oldpassword = '';
         this.newpassword = '';
         this.confirmPassword = '';
-        this.alertService.addAlert('Password changed successfully', AlertContext.Success);
-      },
-      (error) => {
-        console.error(error);
+        this.alertService.addAlert('Password changed successfully.', AlertContext.Success);
       }
     );
   }

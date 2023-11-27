@@ -74,6 +74,13 @@ export class HomeScreenComponent {
       this.alertService.addAlert('Please enter a URL', AlertContext.Error);
       return;
     }
+    try {
+      new URL(this.articleUrl);
+    } catch (error) {
+      this.alertService.addAlert('Invalid URL format. URL has to be in format https://www.google.com', AlertContext.Error);
+      return;
+    }
+
     this.aiResult = null;
     this.isLoading = true;
     if (this.selectedInputType === 'url' && this.articleUrl && this.articleSubject) {
@@ -85,8 +92,11 @@ export class HomeScreenComponent {
         (response: any) => {
           this.isLoading = false;
           if(response.message){
+            console.log(response.message);
+            console.log(this.aiResult, this.isLoading)
             this.alertService.addAlert(response.message, AlertContext.Error);
             this.url_error = true;
+            return
           }
           this.aiResult= response;
         }

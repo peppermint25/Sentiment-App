@@ -21,7 +21,7 @@
   opacity: 0; /* Initially hidden */
   transform: translateY(-100%); /* Start off-screen */
   animation: slideDown 0.5s forwards; /* Slide down animation */
-
+  transition: opacity 0.5s ease-in-out;
 }
 
 @keyframes slideDown {

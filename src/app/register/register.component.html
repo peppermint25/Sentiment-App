@@ -7,7 +7,6 @@
     <div class="register-field">
       <div class="register__item">
         <input type="email" placeholder="E-mail" id="email" [(ngModel)]="email" required [ngClass]="{ 'error-border': emailError }"/>
-        <div *ngIf="emailError" class="error-message">An account with this email already exists.</div>
       </div>
       <div class="register__item">
         <input type="password" placeholder="Password" id="password" [(ngModel)]="password" required/>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { AlertService, AlertContext } from '../services/alert.service';
 
 @Component({
   selector: 'app-history',
@@ -12,7 +13,7 @@ export class HistoryComponent {
   searchQuery: string = '';
   faMagnifyingGlass = faMagnifyingGlass;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private alertService: AlertService) {
     this.fetchHistory();
   }
 
@@ -20,9 +21,6 @@ export class HistoryComponent {
     this.apiService.getHistory().subscribe(
       (data: any) => {
         this.history = data;
-      },
-      (error) => {
-        console.error('Error fetching history:', error);
       }
     );
   }
@@ -53,6 +51,7 @@ export class HistoryComponent {
       this.history = data;
       this.apiService.getHistory().subscribe((data: any) => {
         this.history = data;
+        this.alertService.addAlert('Item deleted successfully.', AlertContext.Info);
       });
     });
   }
@@ -62,6 +61,7 @@ export class HistoryComponent {
       this.history = data;
       this.apiService.getHistory().subscribe((data: any) => {
         this.history = data;
+        this.alertService.addAlert('All items deleted successfully', AlertContext.Info);
       });
     });
   }
