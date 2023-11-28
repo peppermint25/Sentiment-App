@@ -14,10 +14,10 @@
         <textarea placeholder="Insert the text here..." class="search-input" [(ngModel)]="articleText" (keyup.enter)="analyzeText()" #textArea  >
         </textarea>
     </div>
-    <div class="input-btn input-bar" (click)="analyzeUrl()" *ngIf="selectedInputType === 'url'">Analyze
+    <div class="input-btn input-bar" (click)="analyzeUrl()" *ngIf="selectedInputType === 'url'">Analyse
     </div>
     <div class="input-btn input-bar" (click)="analyzeText()" *ngIf="selectedInputType === 'text'">
-        Analyze
+        Analyse
     </div>
     <div class="results" *ngIf="aiResult || isLoading">
         <div class="loading" *ngIf="isLoading">

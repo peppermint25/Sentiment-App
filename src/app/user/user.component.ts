@@ -12,12 +12,14 @@ export class UserComponent {
   newpassword: string = '';
   confirmPassword: string = '';
   isLightTheme: boolean = true;
+  showModal: boolean = false;
 
   constructor(private apiService: ApiService, private alertService: AlertService) { }
 
   deleteAccount() {
     this.apiService.deleteAccount().subscribe((data: any) => {
       console.log(data);
+      this.showModal = false;
       this.alertService.addAlert('Account deleted successfully.', AlertContext.Success);
       sessionStorage.removeItem('token');
       window.location.href = '/login';

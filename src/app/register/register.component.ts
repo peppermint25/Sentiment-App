@@ -35,6 +35,11 @@ export class RegisterComponent {
     if (!emailRegex.test(this.email)) {
       this.alertService.addAlert('Please enter a valid email address', AlertContext.Warning);
       this.emailError = true;
+
+      setTimeout(() => {
+        this.emailError = false;
+      }, 5000);
+      
       return;
     }
     

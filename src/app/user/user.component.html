@@ -25,6 +25,14 @@
     <button type="submit" (click)="changePassword()">Change Password</button>
   </form>
   <div class="user-delete">
-    <button (click)="deleteAccount()">Delete Account</button>
+    <button (click)="showModal = true">Delete Account</button>
+  </div>
+</div>
+<div class="modal" [ngClass]="{'show-modal': showModal}">
+  <div class="modal-content">
+    <h2>Confirm Deletion</h2>
+    <p>Are you sure you want to delete your account?</p>
+    <button (click)="deleteAccount()">Yes</button>
+    <button (click)="showModal = false">No</button>
   </div>
 </div>

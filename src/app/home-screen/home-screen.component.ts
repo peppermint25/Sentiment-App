@@ -91,10 +91,8 @@ export class HomeScreenComponent {
       this.apiService.analyzeArticleByUrl(requestData).subscribe(
         (response: any) => {
           this.isLoading = false;
-          if(response.message){
-            console.log(response.message);
-            console.log(this.aiResult, this.isLoading)
-            this.alertService.addAlert(response.message, AlertContext.Error);
+          if(response.message || response.msg){
+            this.alertService.addAlert(response.message || response.msg, AlertContext.Error);
             this.url_error = true;
             return
           }

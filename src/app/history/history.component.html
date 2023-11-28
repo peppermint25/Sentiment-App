@@ -1,7 +1,7 @@
 <div class="container">
   <div class="top-bar">
     <div class="delete-all-btn">
-      <button class="btn" (click)="deleteAll()">Clear all history</button>
+      <button class="btn" (click)="showModal = true">Clear all history</button>
     </div>
   </div>
   <div class="search-bar">
@@ -32,4 +32,13 @@
       </div>
     </div>
   
+</div>
+
+<div class="modal" [ngClass]="{'show-modal': showModal}">
+  <div class="modal-content">
+    <h2>Confirm Deletion</h2>
+    <p>Are you sure you want to delete all items from the history?</p>
+    <button (click)="deleteAll()">Yes</button>
+    <button (click)="showModal = false">No</button>
+  </div>
 </div>

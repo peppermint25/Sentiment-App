@@ -41,7 +41,7 @@ export class LogInComponent {
       this.emailError = true;
       setTimeout(() => {
         this.emailError = false;
-      }, 10000);
+      }, 5000);
       
       return;
 

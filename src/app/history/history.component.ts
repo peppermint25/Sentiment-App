@@ -12,6 +12,7 @@ export class HistoryComponent {
   history: any[] = [];
   searchQuery: string = '';
   faMagnifyingGlass = faMagnifyingGlass;
+  showModal: boolean = false;
 
   constructor(private apiService: ApiService, private alertService: AlertService) {
     this.fetchHistory();
@@ -61,6 +62,7 @@ export class HistoryComponent {
       this.history = data;
       this.apiService.getHistory().subscribe((data: any) => {
         this.history = data;
+        this.showModal = false;
         this.alertService.addAlert('All items deleted successfully', AlertContext.Info);
       });
     });

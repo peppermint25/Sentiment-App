@@ -2,6 +2,9 @@
   // background: var(--pr-colour);
   height: 40px;
   padding: 10px 20px;
+  background-color: var(--background-colour);
+  border-bottom: 1px solid var(--secondary-colour);
+  
   position: sticky;
   left: 0;
   top: 0;

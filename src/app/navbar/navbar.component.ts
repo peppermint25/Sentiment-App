@@ -2,6 +2,7 @@ import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
+import { AlertService, AlertContext } from '../services/alert.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   isLightTheme: boolean = true;
   faUser = faUser;
 
-  constructor(private AuthService: AuthService, private router: Router) { }
+  constructor(private AuthService: AuthService, private router: Router, private AlertService: AlertService) { }
 
   ngOnInit(): void {
     // Retrieve the theme preference from localStorage, if it exists
@@ -35,7 +36,8 @@ export class NavbarComponent implements OnInit {
   
   logout() {
     this.AuthService.logout().subscribe(
-      (response) => {
+      () => {
+        this.AlertService.addAlert('Logged out successfully.', AlertContext.Success);
         this.router.navigate(['/login']);
         sessionStorage.removeItem('token');
       }
