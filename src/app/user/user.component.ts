@@ -7,6 +7,7 @@ import { AlertService, AlertContext } from '../services/alert.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
+
 export class UserComponent {
   oldpassword: string = '';
   newpassword: string = '';
