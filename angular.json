@@ -65,24 +65,24 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "sentiment-app:build:production"
+              "buildTarget": "sentiment-app:build:production"
             },
             "development": {
-              "browserTarget": "sentiment-app:build:development"
+              "buildTarget": "sentiment-app:build:development"
             }
           },
           "defaultConfiguration": "development",
           "options": {
-            "browserTarget": "sentiment-app:build",
             "hmr": true,
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "proxy.conf.json",
+            "buildTarget": "sentiment-app:build"
 
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sentiment-app:build"
+            "buildTarget": "sentiment-app:build"
           }
         },
         "test": {

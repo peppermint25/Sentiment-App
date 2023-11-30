@@ -1,135 +1,128 @@
-.text-bar{
+.text-bar {
   margin-top: 8rem;
-    width: 100%;
-    height: 95%;
+  width: 100%;
+  height: 95%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+
+  .title {
+    font-size: 48px;
+    font-weight: 300;
+    font-style: oblique;
+    margin: 10px;
+  }
+
+  #toggle-switch {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    user-select: none;
+    width: 60%;
+    border-radius: 5px;
+    overflow: hidden;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 40px;
+    background-color: var(--secondary-colour);
+    border: none;
+    color: var(--text-colour);
 
-    .title{
-        font-size: 48px;
-        font-weight: 300;
-        font-style: oblique;
-        margin: 10px;
-    }
-
-    #toggle-switch {
-      display: flex;
-      width: 60%;
-      border-radius: 5px;
-      overflow: hidden;
-      gap: 10px;
-      padding: 5px;
+    .toggle-option {
+      flex: 1;
+      text-align: center;
       border-radius: 40px;
-      background-color: var(--secondary-colour);
-      border: none;
-      color: var(--text-colour);
+      padding: 10px;
+      cursor: pointer;
+      background-color: var(--dropdown-hover-colour);
+      opacity: 0.6;
+      transition: ease 0.3s;
 
-      .toggle-option {
-        flex: 1;
-        text-align: center;
-        border-radius: 40px;
-        padding: 10px;
-        cursor: pointer;
-        background-color: var(--dropdown-hover-colour);
-        opacity: 0.6;
-      
-        transition: ease 0.3s;
-      }
-      
-      .toggle-option.active {
+      &.active {
         background-color: var(--primary-colour);
         opacity: 1;
         color: var(--background-colour);
       }
-      
-      .toggle-option:hover:not(.active) {
+
+      &:hover:not(.active) {
         opacity: 1;
-        // background-color: var(--switch-inactive-colour);
-        // color: var(--background-colour);
         border: none;
       }
     }
-    
-    .input-bar{
-      display: flex;
-      align-items: center;
-      background-color: white;
-      border: 2px solid var(--secondary-colour);
-      color: black;
-      width: 60%;
-      flex-grow: 1;
-      min-height: 50px;
-      max-height: 500px;
-      margin: 10px;
-      font-size: 24px;
-      border-radius: 40px;
-      padding: 10px;
-      white-space: pre-wrap;
+  }
 
-      &:focus-within{
-        border: 2px solid var(--primary-colour);
-      }
+  .input-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 2px solid var(--secondary-colour);
+    color: black;
+    width: 60%;
+    flex-grow: 1;
+    min-height: 50px;
+    max-height: 500px;
+    margin: 10px;
+    font-size: 24px;
+    border-radius: 40px;
+    padding: 10px;
+    white-space: pre-wrap;
 
-      textarea{
-        background-color: transparent;
-        border: none;
-        font-size: 20px !important;
-        width: 100%;
-        min-height: 24px;
-        overflow: hidden;
-        resize: none;
-        height: 100%;
-        padding: 0;
-        outline: none;
-
-
-      }
-      
-      textarea::placeholder{
-        font-family: "Roboto", "Helvetica Neue", sans-serif;
-      }
-
-      .search-input{
-        flex-grow: 1;
-        background-color: transparent;
-        border: none;
-        font-size: 24px;
-        width: 100%;
-        height: 100%;
-        outline: none;
-      }
-
-    }
-    .input-bar:has(textarea){
-      height: 240px;
-      padding: 15px 10px;
-      textarea{
-        height: 100%;
-      }
+    &:focus-within {
+      border: 2px solid var(--primary-colour);
     }
 
-    .input-btn{
-      background-color: var(--secondary-colour) !important;
-      // box-shadow: 0px 0px 5px 0px var(--secondary-colour) !important;
-      font-size: 32px !important;
-      justify-content: center;
-      color: var(--text-colour) !important;
-      transition: ease 0.4s;
+    textarea {
+      background-color: transparent;
       border: none;
-      &:hover{
-        background-color: var(--primary-colour) !important;
-        box-shadow: 0px 0px 10px 0px var(--primary-colour) !important;
-        color: var(--background-colour) !important;
-      }
+      font-size: 20px !important;
+      width: 100%;
+      min-height: 24px;
+      overflow: hidden;
+      resize: none;
+      height: 100%;
+      padding: 0;
+      outline: none;
     }
-    
 
+    textarea::placeholder {
+      font-family: "Roboto", "Helvetica Neue", sans-serif;
+    }
+
+    .search-input {
+      flex-grow: 1;
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      width: 100%;
+      height: 100%;
+      outline: none;
+    }
+  }
+
+  .input-bar:has(textarea) {
+    height: 240px;
+    padding: 15px 10px;
+    textarea {
+      height: 100%;
+    }
+  }
+
+  .input-btn {
+    background-color: var(--secondary-colour) !important;
+    font-size: 32px !important;
+    justify-content: center;
+    color: var(--text-colour) !important;
+    transition: ease 0.4s;
+    border: none;
+
+    &:hover {
+      background-color: var(--primary-colour) !important;
+      box-shadow: 0px 0px 10px 0px var(--primary-colour) !important;
+      color: var(--background-colour) !important;
+    }
+  }
 }
 
-.results{
+.results {
   background-color: var(--dropdown-colour);
   color: var(--text-colour);
   width: 60%;
@@ -138,7 +131,7 @@
   border-radius: 20px;
   font-size: 24px;
   display: flex;
-  user-select:text;
+  user-select: text;
   margin-top: 15px;
   margin-bottom: 5%;
 
@@ -146,7 +139,7 @@
   flex-direction: column;
   transition: ease 5s;
 
-  h2{
+  h2 {
     font-size: 36px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -160,46 +153,47 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-
-
     transition: ease 0.5s;
 
-    h2{
+    h2 {
       margin: 0;
     }
+  }
 }
 
-}
-
-
-
-.loading{
-  .sentiment-list{
-    .sentiment-entry{
-      .sentiment-type, .sentiment-text, .explanation{
+.loading {
+  .sentiment-list {
+    .sentiment-entry {
+      .sentiment-type,
+      .sentiment-text,
+      .explanation {
         background-color: #cecece;
-        background: linear-gradient(110deg, #c1c1c1 8%, #eeeeee 18%, #c1c1c1 33%);
+        background: linear-gradient(
+          110deg,
+          #c1c1c1 8%,
+          #eeeeee 18%,
+          #c1c1c1 33%
+        );
         border-radius: 10px;
         margin-bottom: 10px;
         background-size: 200% 100%;
         animation: 1.5s shine linear infinite;
       }
-
     }
   }
 
   @keyframes shine {
-    to{
-      background-position: -200% ;
-    }    
+    to {
+      background-position: -200%;
+    }
   }
 }
 
-.succesful-results{
+.succesful-results {
   padding: 20px;
 }
 
-.sentiment-list{
+.sentiment-list {
   overflow-y: auto;
 
   .sentiment-type {
@@ -209,40 +203,38 @@
     font-size: 28px;
   }
 
-  .sentiment-text{
+  .sentiment-text {
     font-size: 24px;
     margin-top: 5px;
     min-height: 30px;
   }
 
-  .explanation{
+  .explanation {
     margin-top: 5px;
     font-style: oblique;
     font-size: 20px;
-    opacity:  0.8;
+    opacity: 0.8;
     min-height: 70px;
   }
 
   .positive {
     color: rgb(0, 202, 0);
   }
-  
+
   .neutral {
     color: rgb(246, 151, 49);
   }
-  
+
   .negative {
     color: rgb(255, 50, 50);
   }
 
-  .sentiment-entry:not(:first-child){
+  .sentiment-entry:not(:first-child) {
     margin-top: 15px;
   }
 }
 
-
-
-.sentiment-bar{
+.sentiment-bar {
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -250,27 +242,26 @@
   width: 100%;
   height: 30px;
 
-  .segment{
+  .segment {
     flex-grow: 1;
     height: 100%;
     width: 0%;
     transition: width 0.5s;
   }
 
-  .positive-segment{
+  .positive-segment {
     background-color: rgb(0, 202, 0);
   }
-  
-  .neutral-segment{
+
+  .neutral-segment {
     background-color: rgb(246, 151, 49);
   }
-  
-  .negative-segment{
+
+  .negative-segment {
     background-color: rgb(255, 50, 50);
-  }  
+  }
 }
 
-
-.error-border{
+.error-border {
   border: 2px solid red !important;
 }
