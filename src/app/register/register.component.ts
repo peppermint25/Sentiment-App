@@ -16,7 +16,7 @@ export class RegisterComponent {
   errorMessage: string = '';
   emailError: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, private alertService: AlertService) { }
+  constructor(public authService: AuthService, public router: Router, public alertService: AlertService) { }
 
   register() {
     if (this.email.length === 0 || this.password.length === 0 || this.confirmPassword.length === 0) {
