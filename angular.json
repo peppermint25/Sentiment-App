@@ -68,15 +68,14 @@
               "buildTarget": "sentiment-app:build:production"
             },
             "development": {
-              "buildTarget": "sentiment-app:build:development"
+              "buildTarget": "sentiment-app:build:development",
+              "hmr": true
             }
           },
           "defaultConfiguration": "development",
           "options": {
-            "hmr": true,
             "proxyConfig": "proxy.conf.json",
             "buildTarget": "sentiment-app:build"
-
           }
         },
         "extract-i18n": {

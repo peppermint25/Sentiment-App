@@ -11,12 +11,12 @@
         </div>
     </div>
     <div class="navbar_left dropdown" style="float: right;" >
-        <button class="dropdown-btn">
-            <fa-icon aria-button="header button to sing in/out and view the history" [icon]="faUser"></fa-icon>
+        <button class="dropdown-btn" aria-label="User Actions" aria-haspopup="true" aria-expanded="false">
+            <fa-icon  [icon]="faUser"></fa-icon>
         </button>
-        <div class="dropdown-menu">
-            <a routerLink="/user" class="dropdown-item">User Profile</a>
-            <a (click)="logout()" class="dropdown-item">Log Out</a>
+        <div class="dropdown-menu" role="menu" aria-hidden="true">
+            <a routerLink="/user" class="dropdown-item" role="menuitem">User Profile</a>
+            <a (click)="logout()" class="dropdown-item" role="menuitem">Log Out</a>
         </div>
     </div>
 </div>
