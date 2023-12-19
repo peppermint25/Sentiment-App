@@ -24,20 +24,28 @@ export class AlertService {
   alerts$ = this.alertSubject.asObservable();
 
   addAlert(message: string, context: AlertContext, duration: number = 5000) {
-    const id = new Date().getTime(); // Unique ID for each alert
+    const existingAlert = this.alerts.find(alert => alert.message === message);
 
-    const newAlert: Alert = {
-      id,
-      message,
-      context,
-    };
+    if (existingAlert) {
+      existingAlert.context = context;
+      clearTimeout(existingAlert.timeoutId);
+      existingAlert.timeoutId = setTimeout(() => this.removeAlert(existingAlert.id), duration);
+    } else {
+      const id = new Date().getTime(); // Unique ID for each alert
 
-    // Update the alerts array and notify subscribers
-    this.alerts.push(newAlert);
-    this.alertSubject.next([...this.alerts]);
+      const newAlert: Alert = {
+        id,
+        message,
+        context,
+      };
 
-    // Set a timeout to remove the alert after the specified duration
-    newAlert.timeoutId = setTimeout(() => this.removeAlert(id), duration);
+      // Update the alerts array and notify subscribers
+      this.alerts.push(newAlert);
+      this.alertSubject.next([...this.alerts]);
+
+      // Set a timeout to remove the alert after the specified duration
+      newAlert.timeoutId = setTimeout(() => this.removeAlert(id), duration);
+    }
   }
 
   private removeAlert(id: number) {

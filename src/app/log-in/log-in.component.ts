@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router} from '@angular/router';
 import { AlertService, AlertContext } from '../services/alert.service';
@@ -8,29 +8,18 @@ import { AlertService, AlertContext } from '../services/alert.service';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent  {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
   errorMessage: string = '';
   emailError: boolean = false;
   passwordError: boolean = false;
-  isLightTheme: boolean = true;
 
 
   constructor(private authService: AuthService, public router: Router, private alertService: AlertService) {}
 
-  ngOnInit(): void {
-    const storedTheme = localStorage.getItem('theme');
 
-    if (storedTheme) {
-      this.isLightTheme = storedTheme === 'light';
-    } else {
-      this.isLightTheme = document.body.getAttribute('data-theme') === 'light';
-    }
-
-    document.body.setAttribute('data-theme', this.isLightTheme ? 'light' : 'dark');
-  }
 
   logIn() {
     this.errorMessage = '';
@@ -75,6 +64,10 @@ export class LogInComponent implements OnInit {
           this.alertService.addAlert(response.message, AlertContext.Warning);
           this.emailError = true;
           this.passwordError = true;
+          setTimeout(() => {
+            this.emailError = false;
+            this.passwordError = false;
+          }, 5000);
         }
       }
     );

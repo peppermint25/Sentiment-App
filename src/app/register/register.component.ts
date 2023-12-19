@@ -83,10 +83,13 @@ export class RegisterComponent {
           if (this.errorMessage === 'An account with this email already exists.') {
             this.emailError = true;
             this.alertService.addAlert('An account with this email already exists.', AlertContext.Error);
+
+            setTimeout(() => {
+              this.emailError = false;
+            }, 5000);
           }
         }
       }
     );
   }
-
 }

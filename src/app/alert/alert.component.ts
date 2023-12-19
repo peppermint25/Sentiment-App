@@ -28,6 +28,18 @@ export class AlertComponent implements OnInit {
     this.alertService.clearAlerts();
   }
 
+  showUniqueAlert(message: string, context: AlertContext) {
+    const existingAlertIndex = this.alerts.findIndex(
+      (alert) => alert.message === message
+    );
+
+    if (existingAlertIndex !== -1) {
+      this.alerts.splice(existingAlertIndex, 1);
+    }
+
+    this.alerts.push({ message, context });
+  }
+
   getAlertClasses(alert: { message: string; context: AlertContext }): string {
     switch (alert.context) {
       case AlertContext.Success:
