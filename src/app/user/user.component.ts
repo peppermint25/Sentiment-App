@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { AlertService, AlertContext } from '../services/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -18,15 +19,14 @@ export class UserComponent {
   isLightTheme: boolean = true;
   showModal: boolean = false;
 
-  constructor(private apiService: ApiService, private alertService: AlertService) { }
+  constructor(private apiService: ApiService, private alertService: AlertService, private router: Router) { }
 
   deleteAccount() {
     this.apiService.deleteAccount().subscribe((data: any) => {
-      console.log(data);
-      this.showModal = false;
       this.alertService.addAlert('Account deleted successfully.', AlertContext.Success);
+      this.showModal = false;
       sessionStorage.removeItem('token');
-      window.location.href = '/login';
+      this.router.navigate(['/login']);
     });
   }
 
@@ -63,9 +63,6 @@ export class UserComponent {
   validatePassword(): boolean {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*|/]).{8,}$/;
 
-    console.log(this.newpassword);
-    console.log(passwordRegex.test(this.newpassword));
-
     if (!passwordRegex.test(this.newpassword)) {
       this.newPasswordError = true;
       if (this.newpassword.length < 8) {
@@ -92,16 +89,11 @@ export class UserComponent {
     if (this.newpassword !== this.confirmPassword) {
       this.newPasswordError = true;
       this.confirmPasswordError = true;
-      console.log(this.newpassword);
-      console.log(this.confirmPassword);
       this.alertService.addAlert('Passwords do not match', AlertContext.Error);
-      console.log('passwords do not match');
       setTimeout(() => {
         this.newPasswordError = false;
         this.confirmPasswordError = false;
       }, 5000);
-      console.log(this.newPasswordError);
-      console.log(this.confirmPasswordError)
       return false;
     }
 

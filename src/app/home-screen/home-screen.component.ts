@@ -40,8 +40,6 @@ export class HomeScreenComponent {
           (response) => {
             this.isLoading = false;
             this.aiResult = response;
-            console.log(this.aiResult);
-
             this.articleSubject = this.aiResult.subject;
 
             if (this.aiResult.article) {

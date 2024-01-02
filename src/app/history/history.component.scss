@@ -141,6 +141,10 @@
   margin-top: 20px;
   margin-bottom: 10px;
 
+  &:focus-within{
+    outline: var(--secondary-colour) 2px solid;
+  }
+
   input{
     border: transparent;
     background: transparent;
@@ -155,6 +159,8 @@
     &:focus{
       outline: 0;
     }
+
+
   }
 
   .search-btn{

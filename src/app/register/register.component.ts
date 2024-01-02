@@ -15,12 +15,30 @@ export class RegisterComponent {
   confirmPassword: string = '';
   errorMessage: string = '';
   emailError: boolean = false;
+  passwordError: boolean = false;
+  confirmPasswordError: boolean = false;
 
   constructor(public authService: AuthService, public router: Router, public alertService: AlertService) { }
 
   register() {
     if (this.email.length === 0 || this.password.length === 0 || this.confirmPassword.length === 0) {
       this.alertService.addAlert('Please fill out all fields', AlertContext.Warning);
+      if (this.email.length === 0) {
+        this.emailError = true;
+      }
+      if (this.password.length === 0) {
+        this.passwordError = true;
+      }
+      if (this.confirmPassword.length === 0) {
+        this.confirmPasswordError = true;
+      }
+
+      setTimeout(() => {
+        this.emailError = false;
+        this.passwordError = false;
+        this.confirmPasswordError = false;
+      }, 5000);
+
       return;
     }
 
@@ -28,6 +46,12 @@ export class RegisterComponent {
 
     if (this.password !== this.confirmPassword) {
       this.alertService.addAlert('Passwords do not match', AlertContext.Warning);
+      this.passwordError = true;
+      this.confirmPasswordError = true;
+      setTimeout(() => {
+        this.passwordError = false;
+        this.confirmPasswordError = false;
+      }, 5000);
       return;
     }
 
@@ -44,11 +68,16 @@ export class RegisterComponent {
     }
     
     // Password difficulty requirements
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*|/]).{8,}$/;
     if (!passwordRegex.test(this.password)) {
-      const errors = [];
+      this.passwordError = true;
+
+
+
+      // Password requirements
       if (this.password.length < 8) {
         this.alertService.addAlert('Password must be at least 8 characters long', AlertContext.Warning);
+
       }
       if (!/[a-z]/.test(this.password)) {
         this.alertService.addAlert('Password must contain at least one lowercase letter', AlertContext.Warning);
@@ -62,6 +91,9 @@ export class RegisterComponent {
       if (!/[@$!%*?&)(/|]/.test(this.password)) {
         this.alertService.addAlert('Password must contain at least one special character', AlertContext.Warning);
       };
+      setTimeout(() => {
+        this.passwordError = false;
+      }, 5000);
       return;
     }
 
@@ -72,14 +104,12 @@ export class RegisterComponent {
 
     this.authService.register(user).subscribe(
       (response) => {
-        console.log(response);
         if (response.message) {
           if (response.message === 'User created successfully.') {
             this.alertService.addAlert('Account created successfully.', AlertContext.Success);
             this.router.navigate(['/login']);
           }
           this.errorMessage = response.message;
-          console.log(this.errorMessage);
           if (this.errorMessage === 'An account with this email already exists.') {
             this.emailError = true;
             this.alertService.addAlert('An account with this email already exists.', AlertContext.Error);

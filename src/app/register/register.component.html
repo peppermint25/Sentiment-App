@@ -9,10 +9,10 @@
         <input type="email" placeholder="E-mail" id="email" [(ngModel)]="email" required [ngClass]="{ 'error-border': emailError }"/>
       </div>
       <div class="register__item">
-        <input type="password" placeholder="Password" id="password" [(ngModel)]="password" required/>
+        <input type="password" placeholder="Password" id="password" [(ngModel)]="password" [ngClass]="{ 'error-border': passwordError }"/>
       </div>
       <div class="register__item">
-        <input type="password" placeholder="Confirm password" id="confirmPassword" [(ngModel)]="confirmPassword" required/>
+        <input type="password" placeholder="Confirm password" id="confirmPassword" [(ngModel)]="confirmPassword" [ngClass]="{ 'error-border': confirmPasswordError }" (keydown.enter)=register()/>
       </div>
       <div class="register__item">
         <button class="btn" (click)="register()">Register</button>

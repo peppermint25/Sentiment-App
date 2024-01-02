@@ -29,17 +29,15 @@ export class HistoryComponent {
 
   calculateWidth(sentimentType: string, item: any): string {
     if (!item || !item.sentiment) {
-      return '0%'; // Return 0% width if there's no data.
+      return '0%';
     }
-
   
-    // Filter sentiments based on sentiment type
     const sentimentsOfType = item.sentiment.filter(
       (sentiment: { sentiment: string }) => sentiment.sentiment === sentimentType
     );
 
     if (sentimentsOfType.length === 0) {
-      return '0%'; // Return 0% width if there are no sentiments of the specified type.
+      return '0%';
     }
   
     const totalSentiments = item.sentiment.length;
@@ -70,13 +68,12 @@ export class HistoryComponent {
   
   search() {
     if (this.searchQuery.trim() === '') {
-      this.fetchHistory(); // If the search input is empty, get the default history
+      this.fetchHistory(); 
     } else {
       this.apiService.searchHistory(this.searchQuery).subscribe((data: any) => {
         this.history = data;
       });
     }
   }
-    
     
 }
