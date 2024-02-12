@@ -1,7 +1,9 @@
-# SentimentApp
+# Beckend
 
 The server side code to this  project is in this repository - https://github.com/peppermint25/sentiment-back-end
 A ChatGPT API key is required.
+
+# SentimentApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
