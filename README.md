@@ -1,3 +1,5 @@
+#This is the backend code for a university project I did making a website for news article AI analysis using a keyword and analysing the articles sentiment to that keyword
+
 # Backend
 
 The server side code to this  project is in this repository - https://github.com/peppermint25/sentiment-back-end
